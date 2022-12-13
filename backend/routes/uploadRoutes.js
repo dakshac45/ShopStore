@@ -11,7 +11,7 @@ const uploadRouter = express.Router();
 uploadRouter.post(
   '/',
   isAuth,
-  isAdmin,
+  // isAdmin,
   upload.single('file'),
   async (req, res) => {
     cloudinary.config({

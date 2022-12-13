@@ -39,6 +39,7 @@ const orderSchema = new mongoose.Schema(
     paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
     deliveredAt: { type: Date },
+    // productBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   },
   {
     timestamps: true,

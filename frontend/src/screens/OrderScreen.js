@@ -149,13 +149,13 @@ export default function OrderScreen() {
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 ,{order.shippingAddress.country}
               </Card.Text>
-              {order.isDelivered ? (
+              {/* {order.isDelivered ? (
                 <MessageBox variant="success">
                   Delivered at {order.deliveredAt}
                 </MessageBox>
               ) : (
                 <MessageBox variant="danger">Not Delivered</MessageBox>
-              )}
+              )} */}
             </Card.Body>
           </Card>
           <Card className="mb-3">

@@ -103,6 +103,12 @@ export default function App() {
                       <LinkContainer to="/orderhistory">
                         <NavDropdown.Item>Order History</NavDropdown.Item>
                       </LinkContainer>
+                      <LinkContainer to="/admin/products">
+                        <NavDropdown.Item>Inventory</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/orders">
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                      </LinkContainer>
                       <NavDropdown.Divider />
                       <Link
                         className="dropdown-item"
@@ -117,8 +123,8 @@ export default function App() {
                       Sign In
                     </Link>
                   )}
-                  {userInfo && userInfo.isAdmin && (
-                    <NavDropdown title="Admin" id="admin-nav-dropdown">
+                  {/* {userInfo && (
+                    <NavDropdown title="Other Options" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard!!</NavDropdown.Item>
                       </LinkContainer>
@@ -132,7 +138,7 @@ export default function App() {
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
-                  )}
+                  )} */}
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -202,49 +208,49 @@ export default function App() {
               <Route
                 path="/admin/dashboard"
                 element={
-                  <AdminRoute>
+                  // <AdminRoute>
                     <DashboardScreen />
-                  </AdminRoute>
+                  // </AdminRoute>
                 }
               ></Route>
                <Route
                 path="/admin/orders"
                 element={
-                  <AdminRoute>
+                  // <AdminRoute>
                     <OrderListScreen />
-                  </AdminRoute>
+                  // </AdminRoute>
                 }
               ></Route>
                <Route
                 path="/admin/users"
                 element={
-                  <AdminRoute>
+                  // <AdminRoute>
                     <UserListScreen />
-                  </AdminRoute>
+                  // </AdminRoute>
                 }
               ></Route>
                <Route
                 path="/admin/products"
                 element={
-                  <AdminRoute>
+                  // <AdminRoute>
                     <ProductListScreen />
-                  </AdminRoute>
+                  // </AdminRoute>
                 }
               ></Route>
               <Route
                 path="/admin/product/:id"
                 element={
-                  <AdminRoute>
+                  // <AdminRoute>
                     <ProductEditScreen />
-                  </AdminRoute>
+                  // </AdminRoute>
                 }
               ></Route>
               <Route
                 path="/admin/user/:id"
                 element={
-                  <AdminRoute>
+                  // <AdminRoute>
                     <UserEditScreen />
-                  </AdminRoute>
+                  // </AdminRoute>
                 }
               ></Route>
               <Route path="/" element={<HomeScreen />} />

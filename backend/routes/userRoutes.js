@@ -10,7 +10,7 @@ const userRouter = express.Router();
 userRouter.get(
   '/',
   isAuth,
-  isAdmin,
+  // isAdmin,
   expressAsyncHandler(async (req, res) => {
     const users = await User.find({});
     res.send(users);
@@ -19,7 +19,7 @@ userRouter.get(
 userRouter.get(
   '/:id',
   isAuth,
-  isAdmin,
+  // isAdmin,
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
@@ -33,7 +33,7 @@ userRouter.get(
 userRouter.put(
   '/:id',
   isAuth,
-  isAdmin,
+  // isAdmin,
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
@@ -50,7 +50,7 @@ userRouter.put(
 userRouter.delete(
   '/:id',
   isAuth,
-  isAdmin,
+  // isAdmin,
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
@@ -70,6 +70,7 @@ userRouter.post(
   expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     console.log(user.password)
+    console.log(user)
     console.log(req.body.password)
     if (user) {
       if (req.body.password === user.password) {
@@ -92,7 +93,8 @@ userRouter.post(
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: bcrypt.hashSync(req.body.password),
+        // password: bcrypt.hashSync(req.body.password),
+        password:req.body.password
       });
       const user = await newUser.save();
       res.send({
