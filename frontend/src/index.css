@@ -16,7 +16,7 @@ main {
 .btn-primary,
 .btn-outline-primary {
   background-color: #d6a074;
-  color: #000000;
+  color: #641e1e;
 }
 .products {
   display: flex;
@@ -24,11 +24,11 @@ main {
   justify-content: center;
 }
 .rating span {
-  color: #ffc000;
+  color: #296997;
 }
 
 .product {
-  border: 1px #404040 solid;
+  border: 1px #982c2c solid;
   margin: 1rem;
 }
 .product img {
@@ -55,8 +55,8 @@ main {
   color: #a0a0a0;
 }
 .checkout-steps > div.active {
-  border-bottom: 0.2rem solid #f08000;
-  color: #f08000;
+  border-bottom: 0.2rem solid #9a9a27;
+  color: #9a9a27;
 }
 .navbar-brand {
   font-weight: bold;
@@ -66,7 +66,7 @@ main {
   height: 100%;
   position: absolute;
   left: -300px;
-  background-color: #100901;
+  background-color: #187279;
   transition: 0.5s;
 }
 

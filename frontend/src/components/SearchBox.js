@@ -15,7 +15,7 @@ export default function SearchBox() {
 
   return (
     <Form className="d-flex me-auto" onSubmit={submitHandler}>
-      <InputGroup>
+      {/* <InputGroup>
         <FormControl
           type="text"
           name="q"
@@ -28,7 +28,7 @@ export default function SearchBox() {
         <Button variant="outline-primary" type="submit" id="button-search">
           <i className="fas fa-search"></i>
         </Button>
-      </InputGroup>
+      </InputGroup> */}
     </Form>
   );
 }

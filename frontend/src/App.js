@@ -74,12 +74,12 @@ export default function App() {
         <header>
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-            <Button
+            {/* <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button>
+              </Button> */}
               <LinkContainer to="/">
                 <Navbar.Brand>ShopStore</Navbar.Brand>
               </LinkContainer>
