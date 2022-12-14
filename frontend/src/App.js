@@ -74,14 +74,14 @@ export default function App() {
         <header>
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-            {/* <Button
+            <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
-              </Button> */}
+              </Button>
               <LinkContainer to="/">
-                <Navbar.Brand>Ebay!</Navbar.Brand>
+                <Navbar.Brand>Ebay - Updated!</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -123,7 +123,7 @@ export default function App() {
                       Sign In
                     </Link>
                   )}
-                  {/* {userInfo && (
+                  {userInfo && (
                     <NavDropdown title="Other Options" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard!!</NavDropdown.Item>
@@ -138,7 +138,7 @@ export default function App() {
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
-                  )} */}
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -157,12 +157,12 @@ export default function App() {
             </Nav.Item>
             {categories.map((category) => (
               <Nav.Item key={category}>
-                {/* <LinkContainer
+                <LinkContainer
                   to={`/search?category=${category}`}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
-                </LinkContainer> */}
+                </LinkContainer>
               </Nav.Item>
             ))}
           </Nav>
