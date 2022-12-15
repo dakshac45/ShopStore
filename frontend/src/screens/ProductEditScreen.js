@@ -20,21 +20,21 @@ const reducer = (state, action) => {
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     case 'UPDATE_REQUEST':
-        return { ...state, loadingUpdate: true };
+      return { ...state, loadingUpdate: true };
     case 'UPDATE_SUCCESS':
-        return { ...state, loadingUpdate: false };
+      return { ...state, loadingUpdate: false };
     case 'UPDATE_FAIL':
-        return { ...state, loadingUpdate: false };
-        case 'UPLOAD_REQUEST':
-          return { ...state, loadingUpload: true, errorUpload: '' };
-        case 'UPLOAD_SUCCESS':
-          return {
-            ...state,
-            loadingUpload: false,
-            errorUpload: '',
-          };
-        case 'UPLOAD_FAIL':
-          return { ...state, loadingUpload: false, errorUpload: action.payload };
+      return { ...state, loadingUpdate: false };
+    case 'UPLOAD_REQUEST':
+      return { ...state, loadingUpload: true, errorUpload: '' };
+    case 'UPLOAD_SUCCESS':
+      return {
+        ...state,
+        loadingUpload: false,
+        errorUpload: '',
+      };
+    case 'UPLOAD_FAIL':
+      return { ...state, loadingUpload: false, errorUpload: action.payload };
     default:
       return state;
   }
@@ -66,7 +66,7 @@ export default function ProductEditScreen() {
     const fetchData = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
-        const { data } = await axios.get(`/api/products/${productId}`);
+        const { data } = await axios.get(`https://35.85.28.189:6001/api/products/${productId}`);
         setName(data.name);
         setSlug(data.slug);
         setPrice(data.price);
@@ -91,7 +91,7 @@ export default function ProductEditScreen() {
     try {
       dispatch({ type: 'UPDATE_REQUEST' });
       await axios.put(
-        `/api/products/${productId}`,
+        `https://35.85.28.189:6001/api/products/${productId}`,
         {
           _id: productId,
           name,
@@ -123,7 +123,7 @@ export default function ProductEditScreen() {
     bodyFormData.append('file', file);
     try {
       dispatch({ type: 'UPLOAD_REQUEST' });
-      const { data } = await axios.post('/api/upload', bodyFormData, {
+      const { data } = await axios.post('https://35.85.28.189:6001/api/upload', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           authorization: `Bearer ${userInfo.token}`,

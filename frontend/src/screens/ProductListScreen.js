@@ -24,28 +24,28 @@ const reducer = (state, action) => {
       };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
-      case 'CREATE_REQUEST':
-        return { ...state, loadingCreate: true };
-      case 'CREATE_SUCCESS':
-        return {
-          ...state,
-          loadingCreate: false,
-        };
-      case 'CREATE_FAIL':
-        return { ...state, loadingCreate: false };
-        case 'DELETE_REQUEST':
-          return { ...state, loadingDelete: true, successDelete: false };
-        case 'DELETE_SUCCESS':
-          return {
-            ...state,
-            loadingDelete: false,
-            successDelete: true,
-          };
-        case 'DELETE_FAIL':
-          return { ...state, loadingDelete: false, successDelete: false };
-    
-        case 'DELETE_RESET':
-          return { ...state, loadingDelete: false, successDelete: false };
+    case 'CREATE_REQUEST':
+      return { ...state, loadingCreate: true };
+    case 'CREATE_SUCCESS':
+      return {
+        ...state,
+        loadingCreate: false,
+      };
+    case 'CREATE_FAIL':
+      return { ...state, loadingCreate: false };
+    case 'DELETE_REQUEST':
+      return { ...state, loadingDelete: true, successDelete: false };
+    case 'DELETE_SUCCESS':
+      return {
+        ...state,
+        loadingDelete: false,
+        successDelete: true,
+      };
+    case 'DELETE_FAIL':
+      return { ...state, loadingDelete: false, successDelete: false };
+
+    case 'DELETE_RESET':
+      return { ...state, loadingDelete: false, successDelete: false };
 
     default:
       return state;
@@ -69,8 +69,8 @@ export default function ProductListScreen() {
     error: '',
   });
 
-    const navigate = useNavigate();
-    const { search } = useLocation();
+  const navigate = useNavigate();
+  const { search } = useLocation();
   const sp = new URLSearchParams(search);
   const page = sp.get('page') || 1;
 
@@ -80,12 +80,12 @@ export default function ProductListScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`/api/products/admin?page=${page} `, {
+        const { data } = await axios.get(`https://35.85.28.189:6001/api/products/admin?page=${page} `, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
 
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
-      } catch (err) {}
+      } catch (err) { }
     };
     if (successDelete) {
       dispatch({ type: 'DELETE_RESET' });
@@ -98,7 +98,7 @@ export default function ProductListScreen() {
       try {
         dispatch({ type: 'CREATE_REQUEST' });
         const { data } = await axios.post(
-          '/api/products',
+          'https://35.85.28.189:6001/api/products',
           {},
           {
             headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -119,7 +119,7 @@ export default function ProductListScreen() {
   const deleteHandler = async (product) => {
     if (window.confirm('Are you sure to delete?')) {
       try {
-        await axios.delete(`/api/products/${product._id}`, {
+        await axios.delete(`https://35.85.28.189:6001/api/products/${product._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         toast.success('product deleted successfully');
@@ -202,7 +202,7 @@ export default function ProductListScreen() {
                 className={x + 1 === Number(page) ? 'btn text-bold' : 'btn'}
                 key={x + 1}
                 to={`/admin/products?page=${x + 1}`}
-                >
+              >
                 {x + 1}
               </Link>
             ))}

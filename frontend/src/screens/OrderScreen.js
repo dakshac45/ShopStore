@@ -22,14 +22,14 @@ function reducer(state, action) {
       return { ...state, loading: false, order: action.payload, error: '' };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
-      case 'PAY_REQUEST':
-        return { ...state, loadingPay: true };
-      case 'PAY_SUCCESS':
-        return { ...state, loadingPay: false, successPay: true };
-      case 'PAY_FAIL':
-        return { ...state, loadingPay: false };
-      case 'PAY_RESET':
-        return { ...state, loadingPay: false, successPay: false };
+    case 'PAY_REQUEST':
+      return { ...state, loadingPay: true };
+    case 'PAY_SUCCESS':
+      return { ...state, loadingPay: false, successPay: true };
+    case 'PAY_FAIL':
+      return { ...state, loadingPay: false };
+    case 'PAY_RESET':
+      return { ...state, loadingPay: false, successPay: false };
 
     default:
       return state;
@@ -73,7 +73,7 @@ export default function OrderScreen() {
       try {
         dispatch({ type: 'PAY_REQUEST' });
         const { data } = await axios.put(
-          `/api/orders/${order._id}/pay`,
+          `https://35.85.28.189:6001/api/orders/${order._id}/pay`,
           details,
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
@@ -94,7 +94,7 @@ export default function OrderScreen() {
     const fetchOrder = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
-        const { data } = await axios.get(`/api/orders/${orderId}`, {
+        const { data } = await axios.get(`https://35.85.28.189:6001/api/orders/${orderId}`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
@@ -113,7 +113,7 @@ export default function OrderScreen() {
       }
     } else {
       const loadPaypalScript = async () => {
-        const { data: clientId } = await axios.get('/api/keys/paypal', {
+        const { data: clientId } = await axios.get('https://35.85.28.189:6001/api/keys/paypal', {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         paypalDispatch({
@@ -127,7 +127,7 @@ export default function OrderScreen() {
       };
       loadPaypalScript();
     }
-}, [order, userInfo, orderId, navigate, paypalDispatch, successPay]);
+  }, [order, userInfo, orderId, navigate, paypalDispatch, successPay]);
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
@@ -209,7 +209,7 @@ export default function OrderScreen() {
                   <Row>
                     <Col>Items</Col>
                     <Col>${order.itemsPrice.toFixed(2)}</Col>
-                    </Row>
+                  </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>

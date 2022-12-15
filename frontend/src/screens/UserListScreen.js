@@ -22,17 +22,17 @@ const reducer = (state, action) => {
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     case 'DELETE_REQUEST':
-        return { ...state, loadingDelete: true, successDelete: false };
+      return { ...state, loadingDelete: true, successDelete: false };
     case 'DELETE_SUCCESS':
-        return {
-          ...state,
-          loadingDelete: false,
-          successDelete: true,
-        };
+      return {
+        ...state,
+        loadingDelete: false,
+        successDelete: true,
+      };
     case 'DELETE_FAIL':
-        return { ...state, loadingDelete: false };
+      return { ...state, loadingDelete: false };
     case 'DELETE_RESET':
-        return { ...state, loadingDelete: false, successDelete: false };
+      return { ...state, loadingDelete: false, successDelete: false };
     default:
       return state;
   }
@@ -52,7 +52,7 @@ export default function UserListScreen() {
     const fetchData = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
-        const { data } = await axios.get(`/api/users`, {
+        const { data } = await axios.get(`https://35.85.28.189:6001/api/users`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
@@ -64,29 +64,29 @@ export default function UserListScreen() {
       }
     };
     if (successDelete) {
-        dispatch({ type: 'DELETE_RESET' });
-      } else {
-        fetchData();
+      dispatch({ type: 'DELETE_RESET' });
+    } else {
+      fetchData();
+    }
+  }, [userInfo, successDelete]);
+
+  const deleteHandler = async (user) => {
+    if (window.confirm('Are you sure to delete?')) {
+      try {
+        dispatch({ type: 'DELETE_REQUEST' });
+        await axios.delete(`https://35.85.28.189:6001/api/users/${user._id}`, {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        toast.success('user deleted successfully');
+        dispatch({ type: 'DELETE_SUCCESS' });
+      } catch (error) {
+        toast.error(getError(error));
+        dispatch({
+          type: 'DELETE_FAIL',
+        });
       }
-    }, [userInfo, successDelete]);
-  
-    const deleteHandler = async (user) => {
-      if (window.confirm('Are you sure to delete?')) {
-        try {
-          dispatch({ type: 'DELETE_REQUEST' });
-          await axios.delete(`/api/users/${user._id}`, {
-            headers: { Authorization: `Bearer ${userInfo.token}` },
-          });
-          toast.success('user deleted successfully');
-          dispatch({ type: 'DELETE_SUCCESS' });
-        } catch (error) {
-          toast.error(getError(error));
-          dispatch({
-            type: 'DELETE_FAIL',
-          });
-        }
-      }
-    };
+    }
+  };
   return (
     <div>
       <Helmet>

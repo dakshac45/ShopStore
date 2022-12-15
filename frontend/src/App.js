@@ -53,7 +53,7 @@ export default function App() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await axios.get(`https://35.85.28.189:6001/api/products/categories`);
         setCategories(data);
       } catch (err) {
         toast.error(getError(err));
@@ -63,18 +63,18 @@ export default function App() {
   }, []);
   return (
     <BrowserRouter>
-       <div
+      <div
         className={
           sidebarIsOpen
             ? 'd-flex flex-column site-container active-cont'
             : 'd-flex flex-column site-container'
         }
       >
-       <ToastContainer position="bottom-center" limit={1} />
+        <ToastContainer position="bottom-center" limit={1} />
         <header>
-        <Navbar bg="dark" variant="dark" expand="lg">
+          <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-            <Button
+              <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
@@ -85,7 +85,7 @@ export default function App() {
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-              <SearchBox />
+                <SearchBox />
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
@@ -168,7 +168,7 @@ export default function App() {
           </Nav>
         </div>
         <main>
-        <Container className="mt-3">
+          <Container className="mt-3">
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
@@ -209,31 +209,31 @@ export default function App() {
                 path="/admin/dashboard"
                 element={
                   // <AdminRoute>
-                    <DashboardScreen />
+                  <DashboardScreen />
                   // </AdminRoute>
                 }
               ></Route>
-               <Route
+              <Route
                 path="/admin/orders"
                 element={
                   // <AdminRoute>
-                    <OrderListScreen />
+                  <OrderListScreen />
                   // </AdminRoute>
                 }
               ></Route>
-               <Route
+              <Route
                 path="/admin/users"
                 element={
                   // <AdminRoute>
-                    <UserListScreen />
+                  <UserListScreen />
                   // </AdminRoute>
                 }
               ></Route>
-               <Route
+              <Route
                 path="/admin/products"
                 element={
                   // <AdminRoute>
-                    <ProductListScreen />
+                  <ProductListScreen />
                   // </AdminRoute>
                 }
               ></Route>
@@ -241,7 +241,7 @@ export default function App() {
                 path="/admin/product/:id"
                 element={
                   // <AdminRoute>
-                    <ProductEditScreen />
+                  <ProductEditScreen />
                   // </AdminRoute>
                 }
               ></Route>
@@ -249,7 +249,7 @@ export default function App() {
                 path="/admin/user/:id"
                 element={
                   // <AdminRoute>
-                    <UserEditScreen />
+                  <UserEditScreen />
                   // </AdminRoute>
                 }
               ></Route>

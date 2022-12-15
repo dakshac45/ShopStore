@@ -57,7 +57,7 @@ export default function ProductScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get(`/api/products/slug/${slug}`);
+        const result = await axios.get(`https://35.85.28.189:6001/api/products/slug/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
@@ -68,10 +68,10 @@ export default function ProductScreen() {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
-    const addToCartHandler = async () => {
+  const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
+    const { data } = await axios.get(`https://35.85.28.189:6001/api/products/${product._id}`);
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;
@@ -91,7 +91,7 @@ export default function ProductScreen() {
     }
     try {
       const { data } = await axios.post(
-        `/api/products/${product._id}/reviews`,
+        `https://35.85.28.189:6001/api/products/${product._id}/reviews`,
         { rating, comment, name: userInfo.name },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -165,7 +165,7 @@ export default function ProductScreen() {
                   <Row>
                     <Col>Status:</Col>
                     <Col>
-                    {/* {console.log("=============================",product.countInStock)} */}
+                      {/* {console.log("=============================",product.countInStock)} */}
                       {product.countInStock > 0 ? (
                         <Badge bg="success">In Stock</Badge>
                       ) : (
@@ -178,7 +178,7 @@ export default function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                    <Button onClick={addToCartHandler} variant="primary">
+                      <Button onClick={addToCartHandler} variant="primary">
                         Add to Cart
                       </Button>
                     </div>
