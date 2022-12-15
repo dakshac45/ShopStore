@@ -7,7 +7,7 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
-import cors  from 'cors';
+import cors from 'cors';
 
 // const Post = require("../models/Post");
 
@@ -100,7 +100,7 @@ app.use((err, req, res, next) => {
 
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6000;
 app.listen(port, () => {
   console.log(`serve at http://localhost:${port}`);
 });

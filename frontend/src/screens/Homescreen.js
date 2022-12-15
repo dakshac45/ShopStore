@@ -31,7 +31,7 @@ export default function HomeScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('http://35.85.28.189:5000/api/products');
+        const result = await axios.get('http://35.85.28.189:6000/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
@@ -46,7 +46,7 @@ export default function HomeScreen() {
       </Helmet>
       <h1>Featured Products</h1>
       <div className="products">
-      {loading ? (
+        {loading ? (
           <LoadingBox />
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>
@@ -58,7 +58,7 @@ export default function HomeScreen() {
               </Col>
             ))}
           </Row>
-            )}
+        )}
       </div>
     </div>
   );
